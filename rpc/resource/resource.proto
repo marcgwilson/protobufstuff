@@ -1,0 +1,54 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "euphrat.es.httpcache";
+option java_outer_classname = "ResponseProto";
+
+package Response;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// The greeting service definition.
+service ResponseService {
+  // Sends a greeting
+  rpc Get (Response) returns (Response) {}
+  rpc Update (Response) returns (Response) {}
+  rpc List (ResourceId) returns (ResponseList) {}
+}
+
+// Response consists of a mode and Response name.
+message Response {
+  int64 id = 1;
+  string name = 2;
+  string data = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message ResponseList {
+  repeated Response response = 1;
+}
+
+// The response message containing the greetings
+message ResponseResult {
+  bool success = 1;
+}
+
+message ResourceId {
+  int64 id = 1;
+}
