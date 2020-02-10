@@ -1,0 +1,14 @@
+package postgres
+
+// --' db.sql
+
+var createDatabase = `CREATE USER $DB_USER WITH ENCRYPTED PASSWORD '$PGPASSWORD';
+
+CREATE DATABASE $DB_NAME
+    WITH OWNER '$DB_USER'
+    ENCODING 'UTF8'
+    LC_COLLATE = 'en_US.UTF-8'
+    LC_CTYPE = 'en_US.UTF-8'
+    TEMPLATE template0;
+
+GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;`
